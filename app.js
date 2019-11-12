@@ -10,6 +10,8 @@ const subscribeRoutes = require('./routes/subscribeRoutes')
 const dotenv = require('dotenv').config();
 const mongoose = require('mongoose');
 
+const Article = require('./models/articles');
+
 /**
  * Express/EJS Setup
  */
@@ -50,15 +52,32 @@ app.get('/', function(req, res) {
   res.render('index', { success: false });
 });
 
-app.get('/:page', function(req, res) {
-  res.render(req.params.page, { success: false, errMsg: "" }); // params.page = :page
-});
+// app.get('/:page', async function(req, res) {
+//   res.render(req.params.page, { success: false, errMsg: "" }); // params.page = :page
+// });
+
+app.get('/blog', async function(req, res) {
+
+  try {
+    const articles = await Article.find({});
+  
+    console.log(articles);
+  
+    res.render('blog', {data: articles});
+
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send(err);
+  }
+})
 
 /**
  * Routes
  */
 
  app.use('/subscribe', subscribeRoutes);
+
+//  app.use('/blog', blogRoutes);
 
 /**
  * Default Error handler

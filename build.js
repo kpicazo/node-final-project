@@ -5,6 +5,7 @@
 const MongoClient = require('mongodb').MongoClient;
 require('dotenv').config();
 const subscribers = require('./fixtures/subscribers');
+const articles = require('./fixtures/articles')
 
 /**
  * Connect to database and build 'users' collection
@@ -17,21 +18,40 @@ MongoClient.connect(uri, { useUnifiedTopology: true, useNewUrlParser: true }, fu
    }
    console.log('build.js: Connected to database');
 
-   const db = client.db("subscriber_db");
-   const collection = db.collection('subscribers');
+   const db = client.db("blog_db");
+   const subCollection = db.collection('subscribers');
+   const articleCollection = db.collection('articles');
 
-   // If collection doesn't already exist, the following will throw "MongoError: ns not found" in the console. The collection will then be created before calling insertMany, so everything will still run as intended.
-   collection.drop().then(function() {
-     console.log('Collection dropped');
-   }).catch(function(err){
-     console.log(err);
-   });
+   /**
+    * If collection doesn't already exist, the drop() function will throw "MongoError: ns not found" in the console. The collection will     then be created before calling insertMany, so everything will still run as intended.
+    * 
+    * Note: Code is repetitive here. How to refactor this when we're dealing with promises?
+    */
 
-   collection.insertMany(subscribers, function(err, cursor) {
+  subCollection.drop().then(function() {
+    console.log('Collection dropped');
+  }).catch(function(err){
+    console.log(err);
+  });
+
+  articleCollection.drop().then(function() {
+  console.log('Collection dropped');
+  }).catch(function(err){
+    console.log(err);
+  });
+
+  subCollection.insertMany(subscribers, function(err, cursor) {
     if (err) {          
       console.log('There was a problem');
     }
-    console.log(`Inserted document count: ${cursor.insertedCount}`);
+    console.log(`Inserted document count for subscribers collection: ${cursor.insertedCount}`);
+  });
+
+  articleCollection.insertMany(articles, function(err, cursor) {
+    if (err) {          
+      console.log('There was a problem');
+    }
+    console.log(`Inserted document count for articles collection: ${cursor.insertedCount}`);
   });
   client.close();
 }); 
