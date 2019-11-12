@@ -1,0 +1,5 @@
+# Module dependencies
+node_modules/
+
+# Database
+.env

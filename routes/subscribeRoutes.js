@@ -1,6 +1,6 @@
 const express = require("express");
 const subscribeRoutes = express.Router();
-const Subscriber = require('../models/subscriber');
+const Subscriber = require('../models/subscribers');
 
 /**
  * Serve the /subscribe page
@@ -31,7 +31,7 @@ subscribeRoutes.post('/', function(req, res, next) {
   subscriber.save(err => {
 
     if (err) {
-      // Give a custom error name so that it's more clear in the console
+      // Give a custom error name and message
       err.name = "FormSubmissionError";
       err.message = "There was a problem saving to the database";
 
@@ -39,9 +39,8 @@ subscribeRoutes.post('/', function(req, res, next) {
       next(err);
 
     } else {
-      // On success, render the home page. I'm using render() instead of redirect() to pass this 'success' variable in order to display the success message on the home page. To avoid EJS errors, this variable will have to be passed into every GET handler that serves the home page
-      res.render("index", {success: true});
-
+      // On success, render the home page and pass the submitted form data that's in req.body
+      res.render("thankyou", {data: req.body});
     }
   });
 });
