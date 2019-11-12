@@ -1,0 +1,27 @@
+<%- include partials/header %>
+
+<main class="thank-you">
+  <h1>Thank you!</h1>
+
+  <h2>You have submitted the following information:</h2>
+  <ul>
+    <li>Name: <%= data.name %></li>
+    <li>Email: <%= data.email %></li>
+
+    <!-- If data was submitted from contact.ejs, print out message if it exists.
+         Three possible outcomes for "Message": 
+          1. No message at all if submitting form from footer, since there's no textarea input there
+          2. "N/A" if submitting from contact.ejs with empty message string
+          3. Message string value if submitting from contact.ejs with a non-empty message string
+    -->
+    <% if (data.message !== undefined) { %>
+    <%   if (data.message.length < 1) { %>
+          <li>Message: N/A</li>
+    <%   } else { %>
+          <li>Message: <%= data.message %></li>
+    <%   } %>
+    <% } %>
+  </ul>
+</main>
+
+<%- include partials/footer %>

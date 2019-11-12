@@ -1,0 +1,680 @@
+@import url('reset.css');
+@import url('fonts.css');
+
+/* ========================== */
+/*  Global                    */
+/* ========================== */
+
+/* Fonts */
+body {
+  font-family: 'Lora', serif;
+}
+
+h1, h2, h3, h4, h5, h6, nav, .contact, footer p, .modal {
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* ========================== */
+/* Nav Bar                    */
+/* ========================== */
+header {
+  background-color: rgb(17, 17, 17);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav {
+  padding: .3em;
+
+  color: white;
+
+  text-align: center;
+}
+
+nav ul {
+  padding-left: 0;
+
+  display: flex;
+  justify-content: center;
+}
+
+nav a {
+  margin: 1em;
+
+  border-bottom: 1px dashed;
+}
+
+nav a:hover {
+  color: rgb(173, 215, 229)
+}
+
+nav .fa-book-open {
+  padding-right: .5em;
+
+  /* Align icon with text */
+  position: relative;
+  bottom: 5px;
+}
+
+/* ========================== */
+/*  Hero Section              */
+/* ========================== */
+
+.hero {
+  background-color: rgb(173, 215, 229);
+  background-image: url('/img/janko-ferlic-specialdaddy-sfL_QOnmy00-unsplash.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  display: flex;
+  flex-direction: column;
+
+  /* Center vertically */
+  justify-content: center; 
+
+  /* Make each item width of text and not width of container (for background-color) */
+  align-items: center;     
+}
+
+.hero h1, .hero p {
+  padding: .3em;
+
+  background-color: rgba(17, 17, 17, 0.8);
+  color: white;
+
+  text-align: center;
+}
+
+.hero h1 {
+  /* Minor positioning adjustments */
+  margin-top: .5em;
+  margin-bottom: .5em;
+}
+
+.hero p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.3em;
+}
+
+/* ========================== */
+/*  Success Modal             */
+/* ========================== */
+
+/* Ref: https://www.w3schools.com/howto/howto_css_modals.asp */
+
+/* Modal background */
+.modal {
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(0, 0, 0, 0.6);
+
+  position: fixed;
+  z-index: 1;
+}
+
+/* Modal Box */
+.modal-content {
+  margin: 0 auto;
+  padding: 30px;
+
+  width: 40vw;
+
+  background-color: #fefefe;
+  color: black;
+
+  border: 4px solid black;
+}
+
+.modal-content h1 {
+  font-size: 2em;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+
+  float: right;
+
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* ========================== */
+/* Blog Cards                 */
+/* ========================== */
+
+.blog {
+  margin: auto;
+  padding: 1em;
+
+  width: 70vw;
+}
+
+.blog section {
+  margin-bottom: 2em;
+}
+
+.blog h1 {
+  margin-bottom: 1em;
+
+  font-size: 2.5em;
+}
+
+.blog h2 {
+  margin-bottom: 1em;
+}
+
+/* Blog Card Grid */
+/* 1x4 Card Pattern (Desktop) */
+
+.blog-card-grid {
+  padding-bottom: 1.2em;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 1em;
+  align-items: end;
+}
+
+/* Cards */
+.blog-item {
+  padding: .7em;
+
+  background-color: white;
+  border: 1px solid rgb(216, 216, 216);
+}
+
+.blog-item img {
+  margin-bottom: .7em;
+
+  max-width: 100%;
+
+  object-fit: contain;
+}
+
+/* Blog URLs */
+.blog-item .blue-a, .blog-post a {
+  font-weight: bold;
+  box-shadow: inset 0 -7px 0 0 rgba(130, 206, 228, 0.3);
+}
+
+.blog-item .blue-a:hover, .blog-post a:hover {
+  box-shadow: inset 5px -20px 0 0 rgba(130, 206, 228, 0.3);
+}
+
+
+/* One Paragraph Review Section  */
+.short-post-section .blog-item {
+  display: flex;
+}
+
+.short-post-section .blog-item img {
+  margin-right: 1em;
+}
+
+.snippet-box {
+  padding: .7em;
+
+  background-color: white;
+  border: 1px solid rgb(216, 216, 216);
+
+  display: flex;
+}
+
+.snippet-box img {
+  padding-right: 1em;
+  max-height: 150px;
+}
+
+/* ========================== */
+/* Blog Post                  */
+/* ========================== */
+
+.blog-post {
+  margin: auto;
+  padding: 1em;
+
+  width: 50vw;
+
+  background-color: white;
+}
+
+.blog-post p, .blog-post ul {
+  line-height: 1.4em;
+}
+
+.series-info {
+  margin-bottom: 1.5em;
+}
+
+.series-info p {
+  margin: 0;
+}
+
+.blog-post .bold-italic {
+  font-weight: bold;
+  font-style: italic;
+}
+
+.blog-post .article-header {
+  /* Make header fill space of padding from parent container */
+  margin: -1em -1em 1em -1em;
+  padding: 1.5em;
+
+  background-color: rgb(17, 17, 17, 0.9);
+  color: white;
+}
+
+.blog-post .author-date {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.blog-post .author-date p {
+  margin: 0;
+}
+
+.blog-post h1 {
+  margin: 0;
+  margin-bottom: .4em;
+
+  font-weight: bold;
+}
+
+.blog-post h2 {
+  margin-bottom: .5em;
+
+  border-bottom: 1px solid black;
+}
+
+.blog-post img {
+  /* Make sure it scales with parent container */
+  max-width: 100%;
+
+  display: block;
+}
+
+/* Image Positioning */
+.blog-img-1 {
+  margin: 0 0 0 .5em;
+
+  float: right;
+}
+
+.blog-img-2 {
+  float: left;
+
+  /* Only works on Chrome!!! */
+  shape-outside: polygon(0px 1px, 291px 5px, 370px 466px, 0px 466px);
+  shape-outside: url('/img/blog/all-girls-team.png');
+  shape-margin: .5em;
+}
+
+/* Pull Quote Styling */
+blockquote {
+  padding: 1em;
+
+  font-size: 1.5em;
+
+  position: relative;
+}
+
+blockquote q {
+  padding-left: 2em;
+
+  display: block;
+
+  quotes: "“" "”";
+}
+
+blockquote q::before {
+  content: open-quote;
+
+  color: black;
+  
+  font-family: Georgia, serif;
+  font-size: 6em;
+
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+/* ========================== */
+/* Gallery                    */
+/* ========================== */
+
+.gallery {
+  margin: auto;
+  padding-left: 2em;
+  padding-right: 2em;
+  padding-bottom: 1em;
+}
+
+.gallery h1 {
+  padding-top: .5em;
+
+  font-size: 2.5em;
+}
+
+.photo-grid ul {
+  padding-left: 0;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 2em;
+}
+
+.photo-grid img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+  object-fit: cover;
+
+  border: 1px solid black;
+}
+
+/* CSS Transitions */
+.photo-grid img:hover {
+  transform: scale(1.1);
+  transition: all .25s ease;
+}
+
+/* ========================== */
+/* Contact Page               */
+/* ========================== */
+
+.contact {
+  margin: auto;
+
+  width: 50vw;
+}
+
+.contact h1 {
+  padding-top: 1em;
+  padding-bottom: 1em;
+
+  font-size: 2.6em;
+}
+
+.contact a {
+  padding: .2em;
+
+  font-weight: bold;
+
+  color: #70CAD1;
+}
+
+/* Form Styling */
+.contact form legend {
+  padding: 1.1em;
+  margin-bottom: 1.1em;
+
+  border: 1px solid black;
+  border-radius: 15px;
+
+  background-color: rgb(17, 17, 17);
+  color: white;
+}
+
+.contact label {
+  margin-bottom: .3em;
+
+  font-weight: bold;
+}
+
+input:focus {
+  outline: 0;
+}
+
+.contact input, textarea {
+  margin-top: .3em;
+  margin-bottom: 1em;
+}
+
+.contact input[type="submit"] {
+  align-self: flex-start;
+}
+
+.contact input[type="text"], .contact input[type="email"] {
+  padding: .5em;
+
+  width: 100%;
+
+  background-color: rgba(173, 215, 229, 0.5);
+
+  font-size: 1.1em;
+
+  border: 1px solid white;
+  border-radius: 15px;
+}
+
+.contact .contact-buttons {
+  display: flex;
+}
+
+.contact input[type="submit"]:hover, .contact input[type="reset"]:hover{
+  cursor: pointer;
+  
+  background-color: rgba(173, 215, 229, 1);
+  color: black;
+}
+.contact input[type="submit"] {
+  margin-right: 1em;
+}
+
+.contact input[type="submit"], .contact input[type="reset"] {
+  padding: .5em 1em;
+
+  background-color: rgb(173, 215, 229, 0.5);
+  color: inherit;
+
+  font-family: inherit;
+  font-weight: bold;
+
+  border: 1px solid white;
+  border-radius: 20px;
+}
+
+.contact .error-msg {
+  margin-bottom: 1.1em;
+
+  color: red;
+
+  font-size: .8em;
+}
+
+/* ========================== */
+/* Thank You Page             */
+/* ========================== */
+
+.thank-you {
+  margin: auto;
+
+  width: 50vw;
+}
+
+.thank-you h1 {
+  padding-top: 1em;
+  padding-bottom: 1em;
+
+  font-size: 2.6em;
+}
+
+.thank-you ul {
+  list-style-type: none;
+}
+
+/* ========================== */
+/* 404                        */
+/* ========================== */
+
+.file-not-found {
+  margin: auto;
+
+  width: 50vw;
+}
+
+.file-not-found h1 {
+  padding-top: 1em;
+  padding-bottom: .5em;
+
+  font-size: 4em;
+}
+
+/* ========================== */
+/* Footer                     */
+/* ========================== */
+footer {
+
+  background-color: rgb(17, 17, 17);
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+footer .social-media {
+  padding: .5em;
+}
+
+footer a {
+  color: inherit;
+}
+
+footer p {
+  margin: .5em 0 0 0;
+}
+
+/* ========================== */
+/* MEDIA QUERIES              */
+/* ========================== */
+@media (max-width: 1545px) {
+  /* Blog Card Grid */
+  .blog-card-grid {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+      "cross-manage from-far-away"
+      "qq-sweeper   red-river";
+  }
+
+  .cross-manage {
+    grid-area: cross-manage;
+  }
+  .from-far-away {
+    grid-area: from-far-away;
+  }
+  .qq-sweeper {
+    grid-area: qq-sweeper;
+  }
+  .red-river {
+    grid-area: red-river;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 540px) {
+
+  /* Hide logo */
+  nav .fa-book-open {
+    display: none;
+  }
+  
+  /* Font Sizing */
+  .hero h1, .blog h1, .blog-post h1, .gallery h1, .contact h1 {
+    font-size: 2em;
+  }
+
+  /* --------------- */
+  /*  Blog Post Grid */
+  /* --------------- */
+  .blog {
+    width: 100vw;
+  }
+  
+  .blog-card-grid {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+      "cross-manage" 
+      "from-far-away"
+      "qq-sweeper"   
+      "red-river";
+  }
+
+  .cross-manage {
+    grid-area: cross-manage;
+  }
+  .from-far-away {
+    grid-area: from-far-away;
+  }
+  .qq-sweeper {
+    grid-area: qq-sweeper;
+  }
+  .red-river {
+    grid-area: red-river;
+  }
+
+  .snippet-box {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    grid-gap: 1em;
+  }
+
+  .snippet-box img {
+    margin: auto;
+    max-height: 250px;
+  }
+
+  /* ----------- */
+  /*  Blog Post  */
+  /* ----------- */
+  .blog-post {
+    width: 100vw;
+  }
+
+  /* Try to center the pull quote to avoid too many line breaks */
+  .blog-post blockquote {
+    margin: 0;
+  }
+
+  /* Article #1: Image tweaks */
+  .blog-img-1 {
+    padding-bottom: 1em;
+  }
+
+  /* Push text under image in first article (kinda hacky?!?!)*/
+  .blog-img-2 {
+    float: none;
+  }
+
+  /* -------------- */
+  /*  Contact Page  */
+  /* -------------- */
+  .contact {
+    padding: 1em;
+    
+    width: 100vw;
+  }
+  
+  .contact h2 {
+    font-size: 1em;
+  }
+}

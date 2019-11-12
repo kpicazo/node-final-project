@@ -1,0 +1,44 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+
+  overflow-x: hidden;
+}
+
+body {
+  background-color: rgb(236, 236, 233);
+  color: #3e3e3e;
+}
+
+header {
+  height: 10vh;
+}
+
+main {
+  min-height: 75vh;
+}
+
+footer {
+  height: 15vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+h1 {
+  font-size: 3.3em;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+nav ul, .photo-grid ul {
+  list-style-type: none;
+}

@@ -1,0 +1,31 @@
+<%- include partials/header %>
+  <main class="contact">
+    <section class="contact-form">
+      <h1>Newsletter Signup</h1>
+      <form action="/subscribe" method="post">
+        <fieldset>
+          <legend>Sign up for our newsletter</legend>
+
+          <div class="error-msg">
+            <h2><%= errMsg %></h2>
+          </div>
+
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
+
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+
+          <label for="adult">I am over 18</label>
+          <input type="checkbox" name="adult">
+
+          <div class="contact-buttons">
+            <input type="submit" value="Send">
+            <input type="reset" value="Reset">
+          </div>
+          
+        </fieldset>
+      </form>
+    </section>
+  </main>
+<%- include partials/footer %>
