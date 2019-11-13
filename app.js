@@ -63,7 +63,7 @@ app.get('/blog', async function(req, res) {
   
     console.log(articles);
   
-    res.render('blog', {data: articles});
+    res.render('blog', {articles: articles});
 
   } catch (err) {
     console.log(err);
@@ -93,6 +93,7 @@ app.use(function(err, req, res, next) {
 
     // All other errors
     } else {
+      console.log(err);
       res.status(404);
       res.render('filenotfound');
     }
