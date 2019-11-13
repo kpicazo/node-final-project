@@ -6,9 +6,9 @@
         <div class="blog-item <%= article.slug %>">
           <!-- img src attribute: Tried storing image path in the database (e.g. "img/blog/cover/img-name.jpg") but it wasn't outputting correctly with EJS so I'm using article.slug to complete the path -->
           <a href="#"><img src="img/blog/covers/<%= article.slug %>.jpg" alt="<%= article.title %>"></a>
-          <h2><%= article.title   %></h2>
+          <h4><%= article.title   %></h4>
           <p> <%= article.summary %></p>
-          <a href="#" class="blue-a">Read More</a>
+          <a href="blog/<%= article.slug %>" class="blue-a">Read More</a>
         </div>
       <% }); %>
     </section>

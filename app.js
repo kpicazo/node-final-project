@@ -5,7 +5,8 @@
 const express = require('express');
 const path = require('path');
 
-const subscribeRoutes = require('./routes/subscribeRoutes')
+const subscribeRoutes = require('./routes/subscribeRoutes');
+const blogRoutes = require('./routes/blogRoutes');
 
 const dotenv = require('dotenv').config();
 const mongoose = require('mongoose');
@@ -33,51 +34,37 @@ db.once('open', function() {
   console.log('DB Connected!!!');
 });
 
-/**
- * Middleware
- */
 
-// Read HTTP POST data (this needs to be placed above the POST request)
+/**
+ * Middleware for reading HTML POST data
+ */
 app.use(express.urlencoded({ extended: false }))
 
-// Serve static assets. Will serve all types of files (css, images) as long as they are in the directory specified in path.join()
-app.use(express.static(path.join(__dirname, 'assets')));
-
 
 /**
- * Endpoints
+ * Endpoints and Routers
  */
 
+ // Index endpoint
 app.get('/', function(req, res) {
   res.render('index', { success: false });
 });
 
-// app.get('/:page', async function(req, res) {
-//   res.render(req.params.page, { success: false, errMsg: "" }); // params.page = :page
-// });
+ // Router for blog articles
+ app.use('/blog', blogRoutes); // this messes up the path for static assets, have to make sure all URLs for static assets are relative in the HTML (ref: https://stackoverflow.com/questions/52422035/static-files-not-working-in-sub-child-routes-in-express-js)
 
-app.get('/blog', async function(req, res) {
+// Default page endpoint
+app.get('/:page', function(req, res) {
+  res.render(req.params.page, { success: false, errMsg: "" });
+});
 
-  try {
-    const articles = await Article.find({});
-  
-    console.log(articles);
-  
-    res.render('blog', {articles: articles});
-
-  } catch (err) {
-    console.log(err);
-    return res.status(500).send(err);
-  }
-})
-
-/**
- * Routes
- */
-
+ // Router for newsletter subscription
  app.use('/subscribe', subscribeRoutes);
 
-//  app.use('/blog', blogRoutes);
+ /**
+  * Serve static assets. Will serve all types of files (css, images) as long as they are in the directory specified in path.join()
+  */
+app.use(express.static(path.join(__dirname, 'assets')));
 
 /**
  * Default Error handler
