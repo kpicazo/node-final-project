@@ -7,8 +7,6 @@ blogRoutes.get('/', async function(req, res) {
   try {
     const articles = await Article.find({});
   
-    console.log(articles);
-  
     res.render('blog', {articles: articles});
 
   } catch (err) {
@@ -17,10 +15,21 @@ blogRoutes.get('/', async function(req, res) {
   }
 });
 
-blogRoutes.get('/:slug', function(req, res) {
+blogRoutes.get('/:slug', async function(req, res) {
 
-  res.render('crossmanagereview'); // placeholder
+  if (req.params.slug === 'cross-manage') {
 
+    // Retrieve article from Atlas
+    const article = await Article.find({slug: req.params.slug});
+
+    console.log(article);
+
+    // Render article page with article data
+    res.render('crossmanagereview', {article: article});
+
+  } else {
+    res.redirect('/'); // This will redirect but url in browser will not change. Why?
+  }
 });
 
 module.exports = blogRoutes;

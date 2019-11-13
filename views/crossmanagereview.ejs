@@ -1,19 +1,20 @@
 <%- include partials/header %>
 
-  <!-- Note: This is the only post with images and a pull quote -->
   <main class="blog-post">
     <article>
       <div class="article-header">
-        <h1>Book Review: Cross Manage by KAITO</h1>
+        <h1>Book Review: <%= article[0].title %></h1> <!-- Have to use [0] because Mongoose returns an array with one object in it -->
         <div class="author-date">
           <p>Author</p>
           <p>Published</p>
-          <p>Katherine Picazo</p>
-          <p>June 13, 2014</p>
+          
+          <!-- I was having trouble pulling out the data in the nested metadata object (it was coming back blank or undefined) and it turns out I forgot to define the values in my model (ref: https://github.com/tj/ejs/issues/215) -->
+          <p><%= article[0].metadata.author %></p> 
+          <p><%= article[0].metadata.pubDate %></p>
         </div>
       </div>
       <div class="series-info"> 
-        <p>Length: 5 volumes</p>
+        <p>Length: <%= article[0].seriesInfo.length %></p>
         <p>Genre: Shonen - sports, comedy, romance</p>
         <p>Publisher: <a href="https://www.viz.com/cross-manage" target="_blank">Viz Media</a> (digital only)</p>
         <br>
