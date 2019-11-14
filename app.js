@@ -10,10 +10,15 @@ const mongoose = require('mongoose');
 
 const session = require('express-session');
 const passport = require('passport');
-// const LocalStrategy = require('passport-local').Strategy;
 
 // Initialize Express
 const app = express();
+
+// Passport Config
+// Question: What is the double parenthesis notation?
+// Answer: require() returns the function that is exported by ./auth/passport, which then 
+// evaluates by calling the passport module that was required above in this file
+require('./config/passport')(passport);
 
 // Set EJS as the view engine
 app.set('view engine', 'ejs'); 
