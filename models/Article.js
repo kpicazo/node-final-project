@@ -21,16 +21,14 @@ const articleSchema = new mongoose.Schema(
       type: String,
       require: true
     },
+    
+    // Additional schema information to fit my existing article page layout
 
     coverImgPath: {
       type: String,
       require: true
     },
 
-    /**
-     * Added schema information to fit my existing article page layout
-     */
-    
     seriesInfo: {
       length: {
         type: String,

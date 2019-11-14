@@ -1,8 +1,6 @@
-/**
- * RESOURCES USED: HTML Minifier http://minifycode.com/html-minifier/
- * 
- * TODO: Figure out a way to store article body in a way that's more readable
- */
+ // RESOURCES USED: HTML Minifier http://minifycode.com/html-minifier/
+ //
+ // TODO: Figure out a way to store article body in a way that's more readable
 
 const articles = [
   {
