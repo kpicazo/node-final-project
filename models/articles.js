@@ -22,6 +22,11 @@ const articleSchema = new mongoose.Schema(
       require: true
     },
 
+    coverImgPath: {
+      type: String,
+      require: true
+    },
+
     /**
      * Added schema information to fit my existing article page layout
      */
