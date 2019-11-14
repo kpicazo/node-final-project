@@ -10,8 +10,7 @@ const mongoose = require('mongoose');
 
 const session = require('express-session');
 const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
-
+// const LocalStrategy = require('passport-local').Strategy;
 
 // Initialize Express
 const app = express();
@@ -30,10 +29,28 @@ db.once('open', function() {
 });
 
 // Middleware for reading HTML POST data
-app.use(express.urlencoded({ extended: false }))
+app.use(express.urlencoded({ extended: false }));
 
+//------------------------
+// Authentication
+//------------------------
 
+// Express session
+app.use(
+  session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+  })
+);
+
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+//------------------------
 // Endpoints and Routers 
+//------------------------
 
 app.get('/', function(req, res) {
   res.render('index', { success: false });
@@ -46,15 +63,15 @@ app.use('/blog', blogRoutes); // this messes up the path for static assets, have
 
 // Default page endpoint
 app.get('/:page', function(req, res) {
-  res.render(req.params.page, { success: false, errMsg: "" });
+  res.render(req.params.page, { success: false, errMsg: "" }); 
 });
 
 // Router for newsletter subscription
 app.use('/subscribe', subscribeRoutes);
 
-// Middleware for serving static assets. Will serve all types of files (css, images) as long as they are in the directory specified in path.join()
+// Middleware for serving static assets. Will serve all types of files (css, images)
+// as long as they are in the directory specified in path.join()
 app.use(express.static(path.join(__dirname, 'assets')));
-
 
 // Default error handler
 app.use(function(err, req, res, next) {
@@ -62,12 +79,12 @@ app.use(function(err, req, res, next) {
 
     // Redirect to form if error came from form submission
     if (err.name === "FormSubmissionError") {
-      console.log(err);
-      res.render('subscribe', {errMsg: "That email is already in use. Please enter another email address."}); // currently only one error message because 
-                                                                                                              // duplicate email is the only way to get an error 
 
-    // All other errors will return a 404 
+      // Currently only one error message because duplicate email is the only way to get an error 
+      res.render('subscribe', {errMsg: "That email is already in use. Please enter another email address."}); 
+
     } else {
+      // All other errors will return a 404 
       console.log(err);
       res.status(404);
       res.render('filenotfound');
@@ -75,10 +92,7 @@ app.use(function(err, req, res, next) {
   }
 });
 
-/**
- * Server start
- */
-
+// Server start
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, function(){

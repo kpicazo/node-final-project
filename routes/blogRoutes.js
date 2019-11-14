@@ -2,19 +2,40 @@ const express = require("express");
 const blogRoutes = express.Router();
 const Article = require('../models/Article');
 
+// const passport = require('passport');
+
+// Check if user is logged in
+function userAuthenticated(req, res) {
+
+  if (req.isAuthenticated()) {
+
+    console.log(req.isAuthenticated());
+
+    res.render('/');
+
+  } else {
+    console.log("user is not authenticated");
+    res.render('login', {errMsg: "You are not logged in. Please log in to view your blog posts"});
+  }
+}
+
 // Will serve all existing articles
 // ((These router functions are modeled on what we did in class when we covered promises and async/await))
-blogRoutes.get('/', async function(req, res) {
+blogRoutes.get('/', userAuthenticated, async function(req, res) {
 
-  try {
-    const articles = await Article.find({});
+  // try {
+  //   const articles = await Article.find({});
   
-    res.render('blog', {articles: articles});
+  //   res.render('blog', {articles: articles});
 
-  } catch (err) {
-    console.log(err);
-    return res.status(500).send(err);
-  }
+  // } catch (err) {
+  //   console.log(err);
+  //   return res.status(500).send(err);
+  // }
+});
+
+blogRoutes.get('/login', (req, res) => {
+  res.render('login', {errMsg: ""});
 });
 
 // Will serve one blog article based on its slug

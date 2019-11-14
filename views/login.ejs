@@ -1,0 +1,27 @@
+<%- include partials/header %>
+<main class="contact">
+  <form action="/login" method="post">
+    <fieldset>
+      <legend>Log in to access blog posts</legend>
+
+      <!-- TODO: Store error message in a partial -->
+      <div class="error-msg">
+        <h2><%= errMsg %></h2>
+      </div>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="password">Password</label>
+      <input type="password" name="password">
+
+      <div class="contact-buttons">
+        <input type="submit" value="Send">
+        <input type="reset" value="Reset">
+      </div>
+      
+    </fieldset>
+  </form>
+</main>
+
+<%- include partials/footer %>
