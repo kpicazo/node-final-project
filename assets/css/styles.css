@@ -276,12 +276,12 @@ nav .fa-book-open {
   color: white;
 }
 
-.blog-post .author-date {
+.blog-post .metadata {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 
-.blog-post .author-date p {
+.blog-post .metadata p {
   margin: 0;
 }
 

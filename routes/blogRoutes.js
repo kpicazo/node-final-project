@@ -15,14 +15,15 @@ blogRoutes.get('/', async function(req, res) {
   }
 });
 
+/**
+ * Will serve one blog article based on its slug
+ */
 blogRoutes.get('/:slug', async function(req, res) {
 
   // Retrieve article from Atlas
   const article = await Article.find({slug: req.params.slug});
 
-  console.log(article);
-
-  // Render article page with article data
+  // Can render all articles to the same template. The endpoint with the slug will still show up in the browser address bar (e.g localhost:3000/blog/slug)
   res.render('article', {article: article});
   
 });

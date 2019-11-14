@@ -1,9 +1,11 @@
+<!-- Template which can dynamically display an article depending on what's pulled from the database -->
+
 <%- include partials/header %>
   <main class="blog-post">
     <article>
       <div class="article-header">
         <h1>Book Review: <%= article[0].title %></h1> <!-- Have to use [0] because Mongoose returns an array with one object in it -->
-        <div class="author-date">
+        <div class="metadata">
           <p>Author</p>
           <p>Published</p>
           
@@ -18,7 +20,10 @@
         <p>Genre: <%= article[0].seriesInfo.genre %></p>
         <p>Publisher: <%- article[0].seriesInfo.publisher %></p>
         <br>
-        <p>All images © <%= article[0].seriesInfo.copyright %></p>
+
+        <% if (article[0].seriesInfo.copyright) { %>
+          <p>All images © <%= article[0].seriesInfo.copyright %></p>
+        <% } %>
       </div>
 
       <%- article[0].body %>
