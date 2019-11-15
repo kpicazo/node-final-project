@@ -1,4 +1,4 @@
-// CODE BY BRAD TRAVERSY 
+// CODE BY BRAD TRAVERSY (with extra comments by me)
 // ref: https://github.com/bradtraversy/node_passport_login
 // passport-local docs: http://www.passportjs.org/packages/passport-local/
 
@@ -12,6 +12,7 @@ const User = require('../models/User');
 module.exports = function(passport) {
   passport.use(
 
+    // This will take a verify callback 
     new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
       // Match user
       User.findOne({
@@ -35,6 +36,7 @@ module.exports = function(passport) {
   );
 
   // This will save user information into the current session.
+  // The user object can be accessed with req.user
   passport.serializeUser(function(user, done) {
     done(null, user.id);
   });

@@ -1,6 +1,9 @@
 <%- include partials/header %>
   <main class="blog">
-    <h1>Some Old Book Reviews</h1>
+    <div class="blog-header">
+      <h1>Some Old Book Reviews</h1>
+      <a href="blog/logout" class="logout">Logout</a>
+    </div>
     <section class="blog-card-grid">
       <% articles.forEach(article => { %>
         <div class="blog-item <%= article.slug %>">

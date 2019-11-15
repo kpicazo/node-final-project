@@ -16,7 +16,7 @@ const app = express();
 
 // Passport Config
 // Question: What is the double parenthesis notation?
-// Answer: require() returns the function that is exported by ./auth/passport, which then 
+// Answer: require() returns the function that is exported by ./config/passport, which then 
 // evaluates by calling the passport module that was required above in this file
 require('./config/passport')(passport);
 
@@ -89,7 +89,7 @@ app.use(function(err, req, res, next) {
       res.render('subscribe', {errMsg: "That email is already in use. Please enter another email address."}); 
 
     } else {
-      // All other errors will return a 404 
+      // All other errors will return a 404
       console.log(err);
       res.status(404);
       res.render('filenotfound');

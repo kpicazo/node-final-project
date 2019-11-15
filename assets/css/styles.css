@@ -161,6 +161,15 @@ nav .fa-book-open {
   width: 70vw;
 }
 
+.blog-header {
+  display: flex;
+  justify-items: space-evenly;
+}
+
+.blog .logout {
+  align-self: flex-start;
+}
+
 .blog section {
   margin-bottom: 2em;
 }
@@ -465,7 +474,7 @@ input:focus {
   display: flex;
 }
 
-.contact input[type="submit"]:hover, .contact input[type="reset"]:hover{
+.contact input[type="submit"]:hover, .contact input[type="reset"]:hover, .logout:hover {
   cursor: pointer;
   
   background-color: rgba(173, 215, 229, 1);
@@ -475,7 +484,9 @@ input:focus {
   margin-right: 1em;
 }
 
-.contact input[type="submit"], .contact input[type="reset"] {
+/* Tried rewriting this as one class and applying it to the button elements, but 
+   the style would not apply to the input buttons */
+.contact input[type="submit"], .contact input[type="reset"], .logout {
   padding: .5em 1em;
 
   background-color: rgb(173, 215, 229, 0.5);
