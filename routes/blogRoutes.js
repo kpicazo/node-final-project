@@ -3,6 +3,7 @@ const blogRoutes = express.Router();
 const Article = require('../models/Article');
 
 const passport = require('passport');
+const userAuthenticated = require('../config/auth');
 
 // Login
 // Passport will take the form values and authenticate them using a "strategy" (we're using 
@@ -32,24 +33,15 @@ blogRoutes.get('/logout', (req, res) => {
   res.redirect('login');
 });
 
-// Middleware to check if user is logged in
-function userAuthenticated(req, res, next) {
-
-  if (req.isAuthenticated()) {
-    return next();
-  }
-
-  console.log("user is not authenticated");
-  res.render('login', {errMsg: "You are not logged in. Please log in to view this page."});
-}
-
 // Will serve all existing articles
 // ((These router functions are modeled on what we did in class when we covered promises and async/await))
 blogRoutes.get('/', userAuthenticated, async function(req, res) {
 
   try {
+    // Retrieve all articles from Atlas
     const articles = await Article.find({});
 
+    // Pass that database data to the 'blog' view and render it
     res.render('blog', {articles: articles});
 
   } catch (err) {
@@ -63,7 +55,7 @@ blogRoutes.get('/:slug', userAuthenticated, async function(req, res) {
 
   try {
 
-    // Retrieve article from Atlas
+    // Retrieve article from Atlas using the slug as a find parameter
     const article = await Article.find({slug: req.params.slug});
 
     // Can render all articles to the same template. The endpoint with the slug will 
