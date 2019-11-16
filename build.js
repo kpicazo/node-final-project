@@ -59,6 +59,8 @@ MongoClient.connect(uri, { useUnifiedTopology: true, useNewUrlParser: true }, fu
   // Create one user for login testing.
   // (In hindsight, probably should not have tracked this file in the repo since the user 
   // credentials are visible in the code)
+  
+  // ref: https://www.npmjs.com/package/bcrypt
   let newUser = {email: 'user@test.com', password: 'password'};
 
   // Hash the password then save to database

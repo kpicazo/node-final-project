@@ -3,7 +3,7 @@ const blogRoutes = express.Router();
 const Article = require('../models/Article');
 
 const passport = require('passport');
-const userAuthenticated = require('../config/auth');
+const ensureAuthenticated = require('../config/auth');
 
 // Note on error messages
 //
@@ -44,7 +44,7 @@ blogRoutes.get('/logout', (req, res) => {
 
 // Will serve all existing articles
 // (These router functions are modeled on what we did in class when we covered promises and async/await)
-blogRoutes.get('/', userAuthenticated, async function(req, res) {
+blogRoutes.get('/', ensureAuthenticated, async function(req, res) {
 
   try {
     // Retrieve all articles from Atlas
@@ -61,7 +61,7 @@ blogRoutes.get('/', userAuthenticated, async function(req, res) {
 
 // Will serve one blog article based on its slug.
 // Since these are also part of the blog, they are login protected as well.
-blogRoutes.get('/:slug', userAuthenticated, async function(req, res) {
+blogRoutes.get('/:slug', ensureAuthenticated, async function(req, res) {
 
   try {
 

@@ -14,9 +14,9 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require('passport');
 
-// require() returns the function that is exported by ./config/passport, which then 
-// evaluates by calling the passport module that was required above in this file
-require('./config/passport')(passport);
+require('./config/passport')(passport); // require() returns the function that is exported by 
+                                        // ./config/passport, which then evaluates by calling 
+                                        // the passport module that was required above in this file
 
 // Initialize Express
 const app = express();
@@ -58,6 +58,7 @@ app.use(
 // Endpoints and Routers // 
 //---------------------- //
 
+// Home page endpoint
 app.get('/', function(req, res) {
   res.render('index', { success: false });
 });
@@ -67,7 +68,7 @@ app.use('/blog', blogRoutes); // this messes up the path for static assets, have
                               // static assets are relative in the HTML 
                               // (ref: https://stackoverflow.com/questions/52422035/static-files-not-working-in-sub-child-routes-in-express-js)
 
-// Default page endpoint
+// Endpoint to serve any page on the website, if it exists
 app.get('/:page', function(req, res) {
   res.render(req.params.page, { success: false, errMsg: "" }); 
 });
