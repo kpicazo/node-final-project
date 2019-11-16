@@ -56,7 +56,9 @@ MongoClient.connect(uri, { useUnifiedTopology: true, useNewUrlParser: true }, fu
     console.log(`Inserted document count for articles collection: ${cursor.insertedCount}`);
   });
 
-  // Create one user for login testing
+  // Create one user for login testing.
+  // (In hindsight, probably should not have tracked this file in the repo since the user 
+  // credentials are visible in the code)
   let newUser = {email: 'user@test.com', password: 'password'};
 
   // Hash the password then save to database

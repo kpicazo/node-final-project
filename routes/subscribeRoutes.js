@@ -11,9 +11,9 @@ subscribeRoutes.get('/', function(req, res) {
 subscribeRoutes.post('/', function(req, res, next) {
 
   // If subscriber has checked the adult checkbox, then the 'adult' attribute will exist in request.body with a value of 'on'. 
-  // Otherwise, the attribute will not exist at all. We need to explicitly set this value to true or false in request.body to make 
-  // it consistent with the Subscriber model. We can then use the request.body object to create a new document and save it to the 
-  // database with Mongoose.
+  // Otherwise, the attribute will not exist at all. We need to explicitly set this value to true or false in request.body
+  // to make it consistent with the Subscriber model. We can then use the request.body object to create a new document and 
+  // save it to the database with Mongoose.
 
   if (req.body.adult) {
     req.body.adult = true;

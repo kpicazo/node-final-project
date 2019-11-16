@@ -59,7 +59,8 @@ blogRoutes.get('/', userAuthenticated, async function(req, res) {
   }
 });
 
-// Will serve one blog article based on its slug
+// Will serve one blog article based on its slug.
+// Since these are also part of the blog, they are login protected as well.
 blogRoutes.get('/:slug', userAuthenticated, async function(req, res) {
 
   try {

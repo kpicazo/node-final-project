@@ -14,7 +14,6 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require('passport');
 
-// Passport Config
 // require() returns the function that is exported by ./config/passport, which then 
 // evaluates by calling the passport module that was required above in this file
 require('./config/passport')(passport);
@@ -46,14 +45,14 @@ app.use(
     resave: true,
     saveUninitialized: true
   })
-);
-
-// Passport middleware
-app.use(passport.initialize());
-app.use(passport.session());
-
-// Middleware for reading HTML POST data
-app.use(express.urlencoded({ extended: false }));
+  );
+  
+  // Passport middleware
+  app.use(passport.initialize());
+  app.use(passport.session());
+  
+  // Middleware for reading HTML POST data
+  app.use(express.urlencoded({ extended: false }));
 
 //---------------------- //
 // Endpoints and Routers // 
