@@ -4,12 +4,15 @@
   <main class="blog-post">
     <article>
       <div class="article-header">
-        <h1>Book Review: <%= article[0].title %></h1> <!-- Have to use [0] because Mongoose returns an array with one object in it -->
+        <h1>Book Review: <%= article[0].title %></h1> <!-- Have to use [0] because Mongoose returns 
+                                                           an array with one object in it -->
         <div class="metadata">
           <p>Author</p>
           <p>Published</p>
           
-          <!-- I was having trouble pulling out the data in the nested metadata object (it was coming back blank or undefined) and it turns out I forgot to define the values in my model/schema (ref: https://github.com/tj/ejs/issues/215) -->
+          <!-- I was having trouble pulling out the data in the nested metadata object 
+            (it was coming back blank or undefined) and it turns out I forgot to define 
+            the values in my model/schema (ref: https://github.com/tj/ejs/issues/215) -->
           <p><%= article[0].metadata.author %></p> 
           <p><%= article[0].metadata.pubDate %></p>
         </div>

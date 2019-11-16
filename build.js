@@ -24,7 +24,6 @@ MongoClient.connect(uri, { useUnifiedTopology: true, useNewUrlParser: true }, fu
 
   // If collection doesn't already exist, the drop() function will throw "MongoError: ns not found" in the console. 
   // The collection will then be created before calling insertMany(), so everything will still run as intended.
-  // TODO: Refactor? Database calls repetitive. How to do rewrite this when dealing with promises?
   subCollection.drop().then(function() { 
     console.log('Subscriber collection dropped');
   }).catch(function(err){

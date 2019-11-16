@@ -163,7 +163,7 @@ nav .fa-book-open {
 
 .blog-header {
   display: flex;
-  justify-items: space-evenly;
+  justify-content: space-between;
 }
 
 .blog .logout {
@@ -457,7 +457,7 @@ input:focus {
   align-self: flex-start;
 }
 
-.contact input[type="text"], .contact input[type="email"] {
+.contact input[type="text"], .contact input[type="email"], input[type="password"] {
   padding: .5em;
 
   width: 100%;

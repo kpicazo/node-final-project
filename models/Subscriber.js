@@ -20,6 +20,6 @@ const subscriberSchema = new mongoose.Schema(
   }
 );
 
-const Subscriber = mongoose.model('Subscriber', subscriberSchema);
+const Subscriber = mongoose.model('Subscribers', subscriberSchema);
 
 module.exports = Subscriber;

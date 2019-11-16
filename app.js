@@ -1,4 +1,7 @@
-// Module imports
+//----------------//
+// Module imports //
+//----------------//
+
 const express = require('express');
 const path = require('path');
 
@@ -10,15 +13,15 @@ const mongoose = require('mongoose');
 
 const session = require('express-session');
 const passport = require('passport');
+const flash = require('connect-flash');
+
+// Passport Config
+// require() returns the function that is exported by ./config/passport, which then 
+// evaluates by calling the passport module that was required above in this file
+require('./config/passport')(passport);
 
 // Initialize Express
 const app = express();
-
-// Passport Config
-// Question: What is the double parenthesis notation?
-// Answer: require() returns the function that is exported by ./config/passport, which then 
-// evaluates by calling the passport module that was required above in this file
-require('./config/passport')(passport);
 
 // Set EJS as the view engine
 app.set('view engine', 'ejs'); 
@@ -26,19 +29,16 @@ app.set('view engine', 'ejs');
 // Database connection - Connects to Mongo Atlas
 mongoose.connect(process.env.DB_CONNECTION, { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true });
 
-const db = mongoose.connection;
+const final = mongoose.connection;
 
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
+final.on('error', console.error.bind(console, 'connection error:'));
+final.once('open', function() {
   console.log('DB Connected!!!');
 });
 
-// Middleware for reading HTML POST data
-app.use(express.urlencoded({ extended: false }));
-
-//------------------------
-// Authentication
-//------------------------
+//--------------- //
+// Authentication //
+//--------------- //
 
 // Express session
 app.use(
@@ -53,9 +53,12 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-//------------------------
-// Endpoints and Routers 
-//------------------------
+// Middleware for reading HTML POST data
+app.use(express.urlencoded({ extended: false }));
+
+//---------------------- //
+// Endpoints and Routers // 
+//---------------------- //
 
 app.get('/', function(req, res) {
   res.render('index', { success: false });
@@ -85,7 +88,6 @@ app.use(function(err, req, res, next) {
     // Redirect to form if error came from form submission
     if (err.name === "FormSubmissionError") {
 
-      // Currently only one error message because duplicate email is the only way to get an error 
       res.render('subscribe', {errMsg: "That email is already in use. Please enter another email address."}); 
 
     } else {
@@ -97,7 +99,10 @@ app.use(function(err, req, res, next) {
   }
 });
 
-// Server start
+//------------- //
+// Server start //
+//------------- //
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, function(){
