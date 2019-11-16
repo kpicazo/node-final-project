@@ -13,7 +13,6 @@ const mongoose = require('mongoose');
 
 const session = require('express-session');
 const passport = require('passport');
-const flash = require('connect-flash');
 
 // Passport Config
 // require() returns the function that is exported by ./config/passport, which then 

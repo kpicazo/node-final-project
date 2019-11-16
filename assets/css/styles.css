@@ -163,10 +163,12 @@ nav .fa-book-open {
 
 .blog-header {
   display: flex;
-  justify-content: space-between;
 }
 
 .blog .logout {
+  margin-left: 1em;
+  margin-top: .4em;
+
   align-self: flex-start;
 }
 
