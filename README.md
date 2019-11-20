@@ -1,6 +1,6 @@
 # Node Final Project
 
-The code in the final project builds on Assignment 3.
+The code in the final project builds on [Assignment 3](https://github.com/katrose/node-assignment-3-v2).
 
 ## Added Functionality
 
